@@ -101,8 +101,8 @@ sendMessage(ws, "chart_create_session", [chart_session, ""])
 # sendMessage(ws, "quote_add_symbols",[session, "NASDAQ:AAPL", {"flags":['force_permission']}])
 # sendMessage(ws, "quote_fast_symbols", [session,"NASDAQ:AAPL"])
 
-sendMessage(ws, "resolve_symbol", [chart_session,"symbol_1","={\"symbol\":\"NASDAQ:AAPL\",\"adjustment\":\"splits\",\"session\":\"extended\"}"])
-sendMessage(ws, "create_series", [chart_session, "s1", "s1", "symbol_1", "1", 1000])
+sendMessage(ws, "resolve_symbol", [chart_session,"symbol_1","={\"symbol\":\"AXISGOLD\",\"adjustment\":\"splits\",\"session\":\"extended\"}"])
+sendMessage(ws, "create_series", [chart_session, "s1", "s1", "symbol_1", "1M", 1000])
 
 # Printing all the result
 a=""
@@ -111,6 +111,8 @@ while True:
         result = ws.recv()
         print(result)
         a=a+result+"\n"
+        if result.startswith('~m~4~m~~'):
+            break;
     except Exception as e:
         print(e)
         break
